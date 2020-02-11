@@ -10,10 +10,9 @@
  
  `./experiment_adding.sh 600 6 4 50 200 0.2` for full training and test run of RIMs on the adding task. 
  
- @article{goyal2019recurrent,
+@article{goyal2019recurrent,
    title={Recurrent independent mechanisms},
    author={Goyal, Anirudh and Lamb, Alex and Hoffmann, Jordan and Sodhani, Shagun and Levine, Sergey and Bengio, Yoshua and Sch{\"o}lkopf, Bernhard},
    journal={arXiv preprint arXiv:1909.10893},
    year={2019}
  }
- ~  
