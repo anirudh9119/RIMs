@@ -1,4 +1,4 @@
- # Recurrent Independent Mechanism
+ # Recurrent Independent Mechanisms
  An implementation of [Recurrent Independent Mechanisms](https://arxiv.org/abs/1909.10893) (Goyal et al. 2019) in PyTorch.
  
  
