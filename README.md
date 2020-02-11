@@ -1,7 +1,7 @@
  # Recurrent Independent Mechanisms
  An implementation of [Recurrent Independent Mechanisms](https://arxiv.org/abs/1909.10893) (Goyal et al. 2019) in PyTorch.
  
-[Anirudh Goyal](https://anirudh9119.github.io/), [Alex Lamb](https://alexlamb62.github.io/), [Shagun Sodhani](https://mila.quebec/en/person/shagun-sodhani/), [Jordan Hoffmann](https://jhoffmann.org/),[Sergey Levine](https://people.eecs.berkeley.edu/~svlevine/), [Yoshua Bengio](https://mila.quebec/en/yoshua-bengio/), [Bernhard Sch{\"o}lkopf](https://www.is.mpg.de/~bs)
+[Anirudh Goyal](https://anirudh9119.github.io/), [Alex Lamb](https://alexlamb62.github.io/), [Shagun Sodhani](https://mila.quebec/en/person/shagun-sodhani/), [Jordan Hoffmann](https://jhoffmann.org/), [Sergey Levine](https://people.eecs.berkeley.edu/~svlevine/), [Yoshua Bengio](https://mila.quebec/en/yoshua-bengio/), [Bernhard Sch{\"o}lkopf](https://www.is.mpg.de/~bs)
  
  It features adding and copying synthetic task from the paper.
  
