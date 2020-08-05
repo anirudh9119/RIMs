@@ -273,8 +273,9 @@ def evaluate_(copy_x, copy_y):
             #output, hidden,extra_loss = model(data, hidden)
             output, hidden, extra_loss, _, _ = model(data, hidden, calc_mask)
             if not args.adaptivesoftmax:
-                loss = criterion(output.view(-1, ntokens), targets.view((args.test_len + 20)*64))
+                loss = criterion(output.view(-1, ntokens), targets.reshape((args.test_len + 20) * 64))
             else:
+                raise Exception('not implemented')
                 _, loss = criterion_adaptive(output.view(-1, args.nhid), targets)
             total_loss += loss.item()
             hidden = repackage_hidden(hidden)
@@ -311,7 +312,7 @@ def train(epoch):
 
         output, hidden, extra_loss, masks, sample_masks = model(data, hidden, calc_mask)
         if not args.adaptivesoftmax:
-            loss = criterion(output.view(-1, ntokens), targets.view((args.train_len + 20)*64))
+            loss = criterion(output.view(-1, ntokens), targets.reshape((args.train_len + 20) * 64))
         else:
             raise Exception('not implemented')
             _, loss = criterion_adaptive(output.view(-1, args.nhid), targets)
