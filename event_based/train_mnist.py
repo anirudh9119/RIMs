@@ -138,7 +138,7 @@ device = torch.device("cuda" if args.cuda else "cpu")
 
 # Get Data Loaders
 
-train_loader, val_loader, test_loader = mnist_data()
+train_loader, val_loader, test_loader = mnist_data(path=os.getcwd() + '/mnist_data')
 
 # Starting from sequential data, batchify arranges the dataset into columns.
 # For instance, with the alphabet as the sequence and batch size 4, we'd get

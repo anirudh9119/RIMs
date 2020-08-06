@@ -268,13 +268,14 @@ def evaluate_(copy_x, copy_y):
     with torch.no_grad():
         for i in range(num_batches):
             batch_ind = random.randint(0, num_batches-1)
-            data = Variable(copy_x[batch_ind].cuda())
-            targets = Variable(copy_y[batch_ind].cuda())
+            data = Variable(copy_x[batch_ind].cuda()) if args.cuda else Variable(copy_x[batch_ind])
+            targets = Variable(copy_y[batch_ind].cuda()) if args.cuda else Variable(copy_y[batch_ind])
             #output, hidden,extra_loss = model(data, hidden)
             output, hidden, extra_loss, _, _ = model(data, hidden, calc_mask)
             if not args.adaptivesoftmax:
-                loss = criterion(output.view(-1, ntokens), targets.view((args.test_len + 20)*64))
+                loss = criterion(output.view(-1, ntokens), targets.reshape((args.test_len + 20) * 64))
             else:
+                raise Exception('not implemented')
                 _, loss = criterion_adaptive(output.view(-1, args.nhid), targets)
             total_loss += loss.item()
             hidden = repackage_hidden(hidden)
@@ -301,23 +302,25 @@ def train(epoch):
         batch_ind = random.randint(0, num_batches-1)
 
         #data, targets = get_batch(train_data, i)
-        data = Variable(copy_x[batch_ind].cuda())
-        targets = Variable(copy_y[batch_ind].cuda())
+        data = Variable(copy_x[batch_ind].cuda()) if args.cuda else Variable(copy_x[batch_ind])
+        targets = Variable(copy_y[batch_ind].cuda()) if args.cuda else Variable(copy_y[batch_ind])
 
-        torch.cuda.synchronize()
+        if args.cuda:
+            torch.cuda.synchronize()
         forward_start_time = time.time()
         hidden = repackage_hidden(hidden)
         model.zero_grad()
 
         output, hidden, extra_loss, masks, sample_masks = model(data, hidden, calc_mask)
         if not args.adaptivesoftmax:
-            loss = criterion(output.view(-1, ntokens), targets.view((args.train_len + 20)*64))
+            loss = criterion(output.view(-1, ntokens), targets.reshape((args.train_len + 20) * 64))
         else:
             raise Exception('not implemented')
             _, loss = criterion_adaptive(output.view(-1, args.nhid), targets)
         total_loss += loss.item()
 
-        torch.cuda.synchronize()
+        if args.cuda:
+            torch.cuda.synchronize()
 
         forward_elapsed = time.time() - forward_start_time
         forward_elapsed_time += forward_elapsed
