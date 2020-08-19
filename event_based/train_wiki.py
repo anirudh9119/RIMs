@@ -126,7 +126,7 @@ matplotlib.rc('ytick', labelsize=7.5)
 print("Are Encoder and Decoder Weights Tied?", args.tied)
 
 # Set the random seed manually for reproducibility.
-torch.manual_seed(args.seed)
+#torch.manual_seed(args.seed)
 
 if torch.cuda.is_available():
     if not args.cuda:
@@ -225,9 +225,9 @@ if args.algo == "blocks":
                             use_cudnn_version=args.cudnn, use_adaptive_softmax=args.adaptivesoftmax,
                             cutoffs=args.cutoffs, use_inactive = args.use_inactive,
                             blocked_grad=args.blocked_grad, block_dilation=args.block_dilation,
-                            layer_dilation=args.layer_dilation, num_modules_read_input=args.read_input, 
-                            memory_slots = args.memory_slot, num_memory_heads = args.memory_heads,  
-                            memory_head_size = args.memory_head_size, gate_style=args.gate_style).to(device)
+                            layer_dilation=args.layer_dilation, num_modules_read_input=args.read_input).to(device)
+                            #memory_slots = args.memory_slot, num_memory_heads = args.memory_heads,
+                            #memory_head_size = args.memory_head_size, gate_style=args.gate_style).to(device)
 elif args.algo == "lstm":
     rnn_mod = lang_lstm.RNNModel
     model = rnn_mod(args.model, ntokens, args.emsize, args.nhid,
@@ -332,7 +332,7 @@ def evaluate(split):
                 output = output.view(-1, ntokens)
                 loss = criterion(output.view(-1, ntokens), targets)
             else:
-                _, loss = criterion_adaptive(output.view(-1, args.nhid), targets)             
+                _, loss = criterion_adaptive(output.view(-1, args.nhid), targets)
             total_loss += len(data) * loss.item()
             hidden = repackage_hidden(hidden)
     total_loss = total_loss / len(data_source)
