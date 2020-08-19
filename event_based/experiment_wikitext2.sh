@@ -16,6 +16,8 @@ name="/home/anirudh/icml_blocks/sparse_relational/Blocks_wiki2/experimental_Bloc
 name="${name//./}"
 echo Running version $name
 
+#Replace d_k=32, d_v=32 https://github.com/anirudh9119/RIMs/blob/master/event_based/blocks_core.py#L47
+# self.att_out = 510. (This should really be a hyperparameter.)
 
 #./experiment_wikitext2.sh 0.0007 510 510 5 5 0.5. It should get a test ~ 102.
 
@@ -25,4 +27,6 @@ python /home/anirudh/icml_blocks/sparse_relational/train_wiki.py --tied --cuda -
 
 
 #To run 2 layered RIM baseline.
+#./experiment_wikitext2.sh 0.0007 510 510 5 5 0.5. It should get a test ~ 99.
+
 #python /home/anirudh/icml_blocks/sparse_relational/train_wiki.py --tied --cuda --cudnn --algo blocks --data /home/anirudh/icml_blocks/sparse_relational/data/wikitext-2 --name $name --lr $lr --drop $drop --nhid $dim1 $dim1 --num_blocks $block1 $block1 --topk $topk1 $topk1 --use_inactive --nlayers 2 --emsize $em --log-interval $log
