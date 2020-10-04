@@ -3,7 +3,7 @@
  
 [Anirudh Goyal](https://anirudh9119.github.io/), [Alex Lamb](https://alexlamb62.github.io/), [Jordan Hoffmann](https://jhoffmann.org/), [Shagun Sodhani](https://mila.quebec/en/person/shagun-sodhani/), [Sergey Levine](https://people.eecs.berkeley.edu/~svlevine/), [Yoshua Bengio](https://mila.quebec/en/yoshua-bengio/), [Bernhard Sch{\"o}lkopf](https://www.is.mpg.de/~bs)
  
- It features adding and copying synthetic task from the paper.
+ It features adding and copying synthetic task from the paper. It also features the code to reproduce atari results.
  
  
  # Examples
