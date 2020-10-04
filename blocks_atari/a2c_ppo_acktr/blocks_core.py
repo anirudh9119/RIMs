@@ -42,6 +42,7 @@ class BlocksCore(nn.Module):
 
         self.version = 2 #version
         if self.version == 1:
+            #here each module independently makes a decision whether to update or not
             self.att_out = self.block_size_out*4
             print('Using version 1 att_out is', self.att_out)
             self.inp_att = MultiHeadAttention(n_head=1, d_model_read=self.block_size_out, d_model_write=self.block_size_in,
@@ -51,6 +52,10 @@ class BlocksCore(nn.Module):
 
 
         elif self.version == 2:
+            #here the normalization is across modules, and the modules which have highest attention
+            #are activated. Even though the results are somewhat similarfor both the version, version==2, leads
+            #to more semantically useful high level variables. #better
+            self.att_out = self.block_size_out*4
             self.att_out = self.block_size_out*4
             print('Using version 2 att_out is', self.att_out)
             d_v = self.att_out#//self.inp_heads
