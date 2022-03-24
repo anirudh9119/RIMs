@@ -115,7 +115,6 @@ class NNBase(nn.Module):
             qw_ = torch.unsqueeze(torch.cat((hxs * masks, hxs * masks), dim=1), dim=0)
             orig_x = x
             x, hxs = self.gru(x.unsqueeze(0), qw_)
-            x = orig_x
             hxs = hxs.squeeze(0)[:, 0:self._hidden_size]
             '''
             x, hxs = self.gru(x.unsqueeze(0), (hxs * masks).unsqueeze(0))
