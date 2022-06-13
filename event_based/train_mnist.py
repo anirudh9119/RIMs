@@ -57,7 +57,7 @@ parser.add_argument('--batch_size', type=int, default=64, metavar='N',
                     help='batch size')
 parser.add_argument('--bptt', type=int, default=100,
                     help='sequence length')
-parser.add_argument('--dropout', type=float, default=0.5,
+parser.add_argument('--dropout', type=float, default=0.2,
                     help='dropout applied to layers (0 = no dropout)')
 parser.add_argument('--tied', default=False, action='store_true',
                     help='tie the word embedding and softmax weights')
@@ -77,7 +77,7 @@ parser.add_argument('--resume', type=int, default=None,
                     help='if specified with the 1-indexed global epoch, loads the checkpoint and resumes training')
 parser.add_argument('--algo', type=str, choices=('blocks', 'lstm','mixed'))
 parser.add_argument('--num_blocks', nargs='+', type=int, default=[6])
-parser.add_argument('--nhid', nargs='+', type=int, default=[300])
+parser.add_argument('--nhid', nargs='+', type=int, default=[600])
 parser.add_argument('--topk', nargs='+', type=int, default=[4])
 parser.add_argument('--block_dilation', nargs='+', type=int, default=-1)
 parser.add_argument('--layer_dilation', nargs='+', type=int, default=-1)
